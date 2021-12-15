@@ -28,9 +28,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
-        isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-        horizontal = Input.GetAxis("Horizontal");
-        player.velocity = new Vector2(horizontal * speed, player.velocity.y);
+
 
         if (afterJump && Input.GetButtonDown("Jump"))
         {
@@ -44,6 +42,14 @@ public class PlayerMovement : MonoBehaviour
             player.velocity = new Vector3(0, jumpSpeed, 0);
             afterJump = true;
         }
+
+    }
+
+    private void FixedUpdate()
+    {
+        isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        horizontal = Input.GetAxis("Horizontal");
+        player.velocity = new Vector2(horizontal * speed, player.velocity.y);
 
     }
 
